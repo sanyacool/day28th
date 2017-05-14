@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <style type="text/css">
+    #obj{
+        width: 30px;
+        height: 50px;
+        background: gray;
+		}	
+	</style>
+	
+	</head>
+	<body>
+		<div id="txt"></div>
+		<div id="obj" style="position : relative; left : 111px; top : 111px;"></div>
+		<script type="text/javascript" id="jsscript">
+		window.onload = function(){
+			el = document.documentElement;
+			for (i=0; i < el.childNodes.length; i++) {
+				//console.log('i = ' + i);	
+				//console.log(el.childNodes[i].nodeName);
+				for (j=0; j < el.childNodes[i].childNodes.length; j++) {
+					//console.log('j = ' + j);	
+					//console.log(el.childNodes[i].childNodes[j].nodeName);
+					if (el.childNodes[i].childNodes[j].nodeName == "SCRIPT") {			
+
+						alert(el.childNodes[i].childNodes[j].innerHTML);
+						
+					}
+				};
+			};
+		};
+		
+		//
+		//			alert(el.childNodes[0].childNodes[1].nodeName);
+
+		
+
+		window.addEventListener('load', function () {
+			var O = document.getElementById('obj'),
+				X = 0,
+				Y = 0;//mouseX=0,mouseY=0; 
+			window.addEventListener('mousemove', function (ev) {
+				//ev = window.event || ev; 
+				X=ev.pageX-15;
+				Y=ev.pageY-25;
+			});
+
+			function move() { 
+				var p = 'px';
+				O.style.left = X + p;
+				O.style.top = Y + p;
+
+				setTimeout(move, 5);
+			}
+			move();
+
+		});
+	</script>
+	</body>
+	</html>
